@@ -9,6 +9,7 @@ export { createSaveStatus } from './ui/SaveStatus.js';
 export { createQuestionCard } from './form/QuestionCard.js';
 export { createDropdown } from './form/Dropdown.js';
 export { createTabs } from './form/Tabs.js';
+export { createExportModal } from './form/ExportModal.js';
 
 // Layout Components
 export { createSectionTitle } from './layout/SectionTitle.js';

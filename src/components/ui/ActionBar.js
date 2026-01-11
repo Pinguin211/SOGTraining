@@ -1,4 +1,6 @@
 import { clearAllData } from '../../logic/storage.js';
+import { getQuestionResponseDataForExport } from '../../logic/export.js';
+import { createExportModal } from '../form/ExportModal.js';
 
 /**
  * Crée la barre d'actions flottante avec les boutons
@@ -10,8 +12,12 @@ export function createActionBar() {
 
     const exportBtn = document.createElement('button');
     exportBtn.className = 'btn-export';
-    exportBtn.textContent = 'Export';
-    // Logique à implémenter
+    exportBtn.textContent = 'Exportation';
+    exportBtn.addEventListener('click', () => {
+        const data = getQuestionResponseDataForExport();
+        const modal = createExportModal(data);
+        document.body.appendChild(modal);
+    });
 
     const clearBtn = document.createElement('button');
     clearBtn.className = 'btn-clear';

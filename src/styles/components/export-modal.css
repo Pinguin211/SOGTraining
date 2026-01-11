@@ -1,0 +1,308 @@
+/* Styles pour le modal d'exportation */
+
+.export-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+.export-modal {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease;
+}
+
+.export-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid var(--border);
+}
+
+.export-modal-header h2 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.5em;
+}
+
+.export-modal-close {
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--text);
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.export-modal-close:hover {
+    background-color: var(--bg);
+    color: var(--primary);
+}
+
+.export-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Avertissement quand les données sont vides */
+.export-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    color: #856404;
+}
+
+.export-warning-icon {
+    font-size: 1.5em;
+    flex-shrink: 0;
+}
+
+.export-warning-content {
+    flex: 1;
+}
+
+.export-warning-content strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    color: #856404;
+}
+
+.export-warning-content p {
+    margin: 0;
+    line-height: 1.5;
+    color: #856404;
+}
+
+/* Onglets dans le modal */
+.export-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.export-tab {
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.export-tab:hover {
+    background-color: var(--bg);
+    color: var(--primary);
+}
+
+.export-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background-color: #e6efff;
+}
+
+.export-content-container {
+    position: relative;
+}
+
+.export-content-panel {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.export-content-panel.active {
+    display: flex;
+}
+
+.export-json-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.export-context-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--bg);
+    border-radius: 6px;
+}
+
+.export-context-label {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.95em;
+    white-space: nowrap;
+}
+
+.export-context-select {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-family: inherit;
+    background-color: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.export-context-select:hover {
+    border-color: var(--primary);
+}
+
+.export-context-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.1);
+}
+
+.export-json-label {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 1em;
+}
+
+.export-json-textarea {
+    width: 100%;
+    min-height: 300px;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    resize: vertical;
+    background-color: #f8f9fa;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.export-json-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.export-json-textarea:disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.btn-copy-json {
+    align-self: flex-end;
+    background-color: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-copy-json:hover {
+    background-color: #002266;
+    transform: translateY(-1px);
+}
+
+.export-modal-footer {
+    padding: 20px;
+    border-top: 2px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-close-modal {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-close-modal:hover {
+    background-color: #5a6268;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .export-modal {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .export-modal-header,
+    .export-modal-body,
+    .export-modal-footer {
+        padding: 15px;
+    }
+
+    .export-json-textarea {
+        min-height: 200px;
+        font-size: 0.8em;
+    }
+}
+
