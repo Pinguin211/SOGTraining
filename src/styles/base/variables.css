@@ -1,0 +1,9 @@
+/* Variables CSS */
+:root {
+    --primary: #003399; /* Bleu Gendarmerie */
+    --bg: #f4f6f9;
+    --text: #333;
+    --card-bg: #ffffff;
+    --border: #ddd;
+}
+

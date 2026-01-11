@@ -1,0 +1,12 @@
+/* Import des styles de base */
+@import './base/variables.css';
+@import './base/main.css';
+
+/* Import des styles de composants */
+@import './components/navbar.css';
+@import './components/question-card.css';
+@import './components/dropdown.css';
+@import './components/tabs.css';
+
+/* Import des styles de layout */
+@import './layout/pages.css';

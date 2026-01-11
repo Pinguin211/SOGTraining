@@ -1,0 +1,46 @@
+/* Styles pour les pages */
+
+/* Page d'accueil */
+.welcome-section {
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.welcome-text {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: var(--text);
+    line-height: 1.8;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+    text-align: left;
+    display: inline-block;
+}
+
+.features-list li {
+    padding: 10px 0;
+    padding-left: 30px;
+    position: relative;
+    font-size: 1em;
+}
+
+.features-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Page toutes les questions */
+#questions-container {
+    padding-top: 20px;
+}
+
