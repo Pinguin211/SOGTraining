@@ -25,6 +25,18 @@ function init() {
 
     // Initialiser le routeur
     router.init();
+
+    // Gérer les mises à jour PWA
+    if ('serviceWorker' in navigator) {
+        // Écouter les mises à jour du service worker
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (refreshing) return;
+            refreshing = true;
+            // Recharger la page quand une nouvelle version est activée
+            window.location.reload();
+        });
+    }
 }
 
 // Lancer l'application quand le DOM est prêt
