@@ -47,4 +47,10 @@ export function initHomePage() {
     if (actionBar) {
         actionBar.style.display = 'none';
     }
+    
+    // Afficher la navbar (la page d'accueil est dans la navbar)
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.style.display = '';
+    }
 }

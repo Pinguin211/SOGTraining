@@ -11,3 +11,6 @@
 
 /* Import des styles de layout */
 @import './layout/pages.css';
+
+/* Import des styles de pages */
+@import './pages/test.css';

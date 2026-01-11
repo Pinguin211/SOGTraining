@@ -1,5 +1,7 @@
 import { initHomePage } from '../pages/HomePage.js';
 import { initAllQuestionsPage } from '../pages/AllQuestionsPage.js';
+import { initTestConfigPage } from '../pages/TestConfigPage.js';
+import { initTestExecutionPage } from '../pages/TestExecutionPage.js';
 import { updateNavbarActive } from '../components/index.js';
 
 /**
@@ -10,7 +12,9 @@ class Router {
         this.currentPage = 'home';
         this.routes = {
             'home': initHomePage,
-            'all-questions': initAllQuestionsPage
+            'all-questions': initAllQuestionsPage,
+            'test-config': initTestConfigPage,
+            'test': initTestExecutionPage
         };
     }
 
@@ -22,7 +26,11 @@ class Router {
         if (this.routes[pageId]) {
             this.currentPage = pageId;
             this.routes[pageId]();
-            updateNavbarActive(pageId);
+            // Ne mettre à jour la navbar que si la page est dans la navbar
+            // La page 'test' n'est pas dans la navbar
+            if (pageId !== 'test') {
+                updateNavbarActive(pageId);
+            }
             // Mettre à jour l'URL sans recharger la page
             window.history.pushState({ page: pageId }, '', `#${pageId}`);
         }

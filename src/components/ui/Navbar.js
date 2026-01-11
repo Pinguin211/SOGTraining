@@ -12,7 +12,8 @@ export function createNavbar(onNavigate) {
 
     const navItems = [
         { id: 'home', label: 'Accueil', href: '#home' },
-        { id: 'all-questions', label: 'Questions', href: '#all-questions' }
+        { id: 'all-questions', label: 'Questions', href: '#all-questions' },
+        { id: 'test-config', label: 'Test', href: '#test-config' }
     ];
 
     navItems.forEach(item => {

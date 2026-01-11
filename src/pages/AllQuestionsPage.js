@@ -106,4 +106,10 @@ export function initAllQuestionsPage() {
     if (actionBar) {
         actionBar.style.display = 'flex';
     }
+    
+    // Afficher la navbar (la page de questions est dans la navbar)
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.style.display = '';
+    }
 }
