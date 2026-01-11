@@ -1,0 +1,2369 @@
+/* Style "School Friendly" - Type Carnet de notes / Tableau blanc */
+
+:root {
+    --school-bg: #f8f9fa;
+    --school-paper: #ffffff;
+    --school-line: #dee2e6;
+    --school-margin: #ffd54f;
+    --school-text: #1a1a1a;
+    --school-text-light: #4a4a4a;
+    --school-primary: #0d47a1; /* Bleu plus sombre pour meilleur contraste */
+    --school-accent: #d32f2f; /* Rouge plus sombre */
+    --school-highlight: #fff59d; /* Jaune fluo plus doux */
+    --school-shadow: rgba(0, 0, 0, 0.12);
+}
+
+.revision-sheet-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif; /* Touche plus scolaire */
+    color: var(--school-text);
+    line-height: 1.6;
+}
+
+/* Bouton retour plus visible */
+.btn-back-revision {
+    background-color: var(--school-accent);
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 0 #b71c1c;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-back-revision:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #b71c1c;
+}
+
+.btn-back-revision:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #b71c1c;
+}
+
+/* En-tête type "Titre de leçon" */
+.revision-sheet-header {
+    background: var(--school-paper);
+    color: var(--school-text);
+    padding: 30px;
+    border-radius: 20px;
+    border: 4px solid var(--school-primary);
+    box-shadow: 10px 10px 0 var(--school-shadow);
+    margin-bottom: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.revision-sheet-header::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 2px dashed rgba(13, 71, 161, 0.15);
+    border-radius: 14px;
+    pointer-events: none;
+}
+
+.revision-sheet-header-icon {
+    font-size: 4.5em;
+    filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.1));
+}
+
+.revision-sheet-header-content {
+    flex: 1;
+}
+
+.revision-sheet-main-title {
+    font-size: 2.2em;
+    font-weight: 900;
+    color: var(--school-primary);
+    margin: 0 0 15px 0;
+    line-height: 1.1;
+    text-transform: uppercase;
+    border: none;
+    padding: 0;
+}
+
+.revision-sheet-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.revision-meta-item {
+    background: var(--school-highlight);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 2px solid rgba(0,0,0,0.05);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.meta-label {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--school-text-light);
+}
+
+.meta-value {
+    font-size: 1.1em;
+    font-weight: 800;
+    color: #000;
+}
+
+/* Phases type "Bloc de notes" */
+.revision-phases-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.revision-phase-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    border: 3px solid #eee;
+    box-shadow: 8px 8px 0 var(--school-shadow);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Couleurs spécifiques par phase */
+.revision-phase-card.phase-light-blue {
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+    border-color: #90caf9;
+}
+
+.revision-phase-card.phase-red {
+    background: linear-gradient(135deg, #ffebee 0%, #ffffff 100%);
+    border-color: #ef5350;
+}
+
+.revision-phase-card.phase-green {
+    background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+    border-color: #66bb6a;
+}
+
+.revision-phase-card.phase-orange {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffffff 100%);
+    border-color: #ffb74d;
+}
+
+.revision-phase-card:hover {
+    transform: translateX(5px);
+    box-shadow: 12px 12px 0 var(--school-shadow);
+}
+
+.revision-phase-card.phase-light-blue:hover {
+    border-color: #64b5f6;
+}
+
+.revision-phase-card.phase-red:hover {
+    border-color: #e57373;
+}
+
+.revision-phase-card.phase-green:hover {
+    border-color: #81c784;
+}
+
+.revision-phase-card.phase-orange:hover {
+    border-color: #ffa726;
+}
+
+.revision-phase-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.revision-phase-icon {
+    font-size: 2.5em;
+    filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.1));
+    flex-shrink: 0;
+}
+
+.revision-phase-number {
+    width: 55px;
+    height: 55px;
+    font-size: 1.8em;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--school-primary);
+    color: white;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+/* Couleurs des numéros selon la phase */
+.phase-light-blue .revision-phase-number {
+    background: #42a5f5;
+}
+
+.phase-red .revision-phase-number {
+    background: #ef5350;
+}
+
+.phase-green .revision-phase-number {
+    background: #66bb6a;
+}
+
+.phase-orange .revision-phase-number {
+    background: #ff9800;
+}
+
+.revision-phase-title {
+    font-size: 1.6em;
+    font-weight: 900;
+    color: var(--school-primary);
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+/* Couleurs des titres selon la phase */
+.phase-light-blue .revision-phase-title {
+    color: #1976d2;
+}
+
+.phase-red .revision-phase-title {
+    color: #c62828;
+}
+
+.phase-green .revision-phase-title {
+    color: #2e7d32;
+}
+
+.phase-orange .revision-phase-title {
+    color: #e65100;
+}
+
+.revision-phase-duration {
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--school-primary);
+    background: #e3f2fd;
+    padding: 6px 14px;
+    border-radius: 50px;
+    margin-bottom: 15px;
+    align-self: flex-start;
+}
+
+/* Couleurs des durées selon la phase */
+.phase-light-blue .revision-phase-duration {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.phase-red .revision-phase-duration {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.phase-green .revision-phase-duration {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.phase-orange .revision-phase-duration {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.revision-phase-objective {
+    font-size: 1.1em;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    background: #fffde7;
+    border-left: 6px solid var(--school-margin);
+    color: #5d4037;
+}
+
+/* Contenu des listes */
+.revision-category-block {
+    margin-bottom: 20px;
+}
+
+.revision-category-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.revision-category-icon {
+    font-size: 1.5em;
+    filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.1));
+}
+
+.revision-category-title {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: var(--school-accent);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    padding: 0;
+}
+
+.revision-content-item {
+    font-size: 1.15em;
+    padding: 10px 0 10px 40px;
+    font-weight: 600;
+    position: relative;
+    color: var(--school-text);
+}
+
+.revision-content-item::before {
+    content: '✏️';
+    position: absolute;
+    left: 0;
+    font-size: 1em;
+}
+
+/* Page temporaire et liste globale */
+.revision-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.revision-sheet-item {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 16px;
+    border: 3px solid #eee;
+    box-shadow: 6px 6px 0 var(--school-shadow);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.revision-sheet-item:hover {
+    border-color: var(--school-primary);
+    transform: translateY(-4px);
+    box-shadow: 10px 10px 0 rgba(13, 71, 161, 0.1);
+}
+
+.revision-sheet-icon {
+    font-size: 3.5em;
+}
+
+.revision-sheet-title {
+    font-size: 1.15em;
+    font-weight: 800;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .revision-sheet-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+    
+    .revision-sheet-main-title {
+        font-size: 2.2em;
+    }
+    
+    .revision-sheet-meta {
+        justify-content: center;
+    }
+    
+    .revision-phase-title {
+        font-size: 1.6em;
+    }
+    
+    .revision-content-item {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 500px) {
+    .revision-sheet-header-icon {
+        font-size: 4em;
+    }
+    
+    .revision-phase-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+/* ============================================
+   STYLES POUR LA FICHE IDENTITÉ ET STATUT
+   ============================================ */
+
+.identite-statut-sheet {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: #000000;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* En-tête avec bannière bleue */
+.identite-statut-header {
+    background: linear-gradient(135deg, #0a3d7a 0%, #0d47a1 100%);
+    color: #ffffff;
+    padding: 25px 35px;
+    font-size: 1.6em;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 35px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Définition centrale */
+.identite-definition-box {
+    background: #ffffff;
+    border: 4px solid #ffd700;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 35px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(255, 215, 0, 0.2);
+    background: linear-gradient(135deg, #ffffff 0%, #fffef5 100%);
+}
+
+.identite-definition-icon {
+    font-size: 4em;
+    flex-shrink: 0;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.identite-definition-content {
+    flex: 1;
+}
+
+.identite-definition-label {
+    font-size: 1.3em;
+    font-weight: 900;
+    color: #0a3d7a;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.identite-definition-text {
+    font-size: 1.4em;
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Section deux colonnes */
+.identite-two-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.identite-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.identite-section-title {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #0a3d7a;
+    margin: 0 0 20px 0;
+    border: none;
+    padding: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Boîtes ministères (colonne gauche) */
+.identite-ministry-box {
+    background: linear-gradient(135deg, #0a3d7a 0%, #0d47a1 100%);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    box-shadow: 0 4px 8px rgba(13, 71, 161, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.identite-ministry-icon {
+    background: #ffffff;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.identite-ministry-content {
+    flex: 1;
+}
+
+.identite-ministry-name {
+    font-size: 1.35em;
+    font-weight: 900;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.3px;
+}
+
+.identite-ministry-subtitle {
+    font-size: 1.05em;
+    opacity: 0.95;
+    margin-bottom: 18px;
+    font-weight: 600;
+    color: #e3f2fd;
+}
+
+.identite-ministry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.identite-ministry-list li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    font-size: 1.05em;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.identite-ministry-list li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #ffd700;
+}
+
+/* Boîtes symboles (colonne droite) */
+.identite-symbol-box {
+    background: #ffffff;
+    border: 4px solid #ffd700;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(255, 215, 0, 0.2);
+    background: linear-gradient(135deg, #ffffff 0%, #fffef5 100%);
+}
+
+.identite-symbol-icon {
+    font-size: 2.5em;
+    color: #ffb300;
+    flex-shrink: 0;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.identite-symbol-content {
+    flex: 1;
+}
+
+.identite-symbol-category {
+    font-size: 1.25em;
+    font-weight: 900;
+    color: #0a3d7a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.identite-symbol-text {
+    font-size: 1.15em;
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Section des 5 piliers */
+.identite-piliers-section {
+    margin-top: 40px;
+}
+
+.identite-piliers-title {
+    margin-bottom: 25px;
+}
+
+.identite-piliers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 18px;
+}
+
+.identite-pilier-box {
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgba(13, 71, 161, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.identite-pilier-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(13, 71, 161, 0.3);
+}
+
+.identite-pilier-header {
+    background: linear-gradient(135deg, #0a3d7a 0%, #0d47a1 100%);
+    color: #ffffff;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 900;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid #ffd700;
+}
+
+.identite-pilier-icon {
+    font-size: 1.8em;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.identite-pilier-name {
+    font-size: 1.05em;
+    flex: 1;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.identite-pilier-text {
+    padding: 18px;
+    font-size: 1.05em;
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.5;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+/* Responsive pour la fiche Identité et Statut */
+@media (max-width: 1000px) {
+    .identite-piliers-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    
+    .identite-pilier-name {
+        font-size: 0.95em;
+    }
+    
+    .identite-pilier-text {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 900px) {
+    .identite-two-columns {
+        grid-template-columns: minmax(400px, 1fr);
+    }
+    
+    .identite-piliers-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    
+    .identite-statut-header {
+        font-size: 1.3em;
+        padding: 20px 25px;
+    }
+    
+    .identite-definition-text {
+        font-size: 1.2em;
+    }
+    
+    .identite-section-title {
+        font-size: 1.3em;
+    }
+    
+    .identite-ministry-name {
+        font-size: 1.2em;
+    }
+    
+    .identite-symbol-category {
+        font-size: 1.15em;
+    }
+}
+
+@media (max-width: 900px) {
+    .identite-piliers-container {
+        grid-template-columns: minmax(400px, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .identite-statut-sheet {
+        padding: 15px;
+    }
+    
+    .identite-piliers-container {
+        grid-template-columns: minmax(300px, 1fr);
+    }
+    
+    .identite-statut-header {
+        font-size: 1.1em;
+        padding: 18px 20px;
+    }
+    
+    .identite-definition-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+    
+    .identite-definition-icon {
+        font-size: 3.5em;
+    }
+    
+    .identite-definition-label {
+        font-size: 1.1em;
+    }
+    
+    .identite-definition-text {
+        font-size: 1.1em;
+    }
+    
+    .identite-ministry-box,
+    .identite-symbol-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .identite-ministry-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .identite-section-title {
+        font-size: 1.2em;
+    }
+    
+    .identite-ministry-name {
+        font-size: 1.15em;
+    }
+    
+    .identite-symbol-category {
+        font-size: 1.1em;
+    }
+    
+    .identite-symbol-text {
+        font-size: 1.05em;
+    }
+    
+    .identite-pilier-header {
+        padding: 15px;
+    }
+    
+    .identite-pilier-name {
+        font-size: 0.9em;
+    }
+    
+    .identite-pilier-text {
+        font-size: 1em;
+        padding: 15px;
+    }
+}
+
+/* ============================================
+   STYLES POUR LA FICHE HIÉRARCHIE ET GRADES
+   ============================================ */
+
+.hierarchie-sheet {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: #000000;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* En-tête avec titre */
+.hierarchie-header {
+    font-size: 2em;
+    font-weight: 900;
+    color: #000000;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hierarchie-title-icon {
+    font-size: 0.9em;
+}
+
+/* Bannière d'avertissement rouge */
+.hierarchie-warning-banner {
+    background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%);
+    color: #ffffff;
+    padding: 20px 30px;
+    font-size: 1.3em;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 35px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(198, 40, 40, 0.4);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
+}
+
+/* Container des trois colonnes */
+.hierarchie-categories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+}
+
+/* Carte de catégorie */
+.hierarchie-category-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+/* En-têtes de catégorie */
+.hierarchie-category-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #ffffff;
+    font-weight: 900;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hierarchie-header-blue {
+    background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%);
+}
+
+.hierarchie-header-red {
+    background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%);
+}
+
+.hierarchie-header-gold {
+    background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
+}
+
+.hierarchie-category-icon {
+    font-size: 2.5em;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    flex-shrink: 0;
+}
+
+.hierarchie-category-title-container {
+    flex: 1;
+}
+
+.hierarchie-category-number {
+    font-size: 1.2em;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.hierarchie-category-title {
+    font-size: 1.4em;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hierarchie-category-subtitle {
+    font-size: 0.9em;
+    opacity: 0.95;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+/* Contenu de catégorie */
+.hierarchie-category-content {
+    padding: 25px;
+    min-height: 200px;
+}
+
+.hierarchie-content-blue {
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+}
+
+.hierarchie-content-red {
+    background: linear-gradient(135deg, #ffebee 0%, #ffffff 100%);
+}
+
+.hierarchie-content-gold {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffffff 100%);
+}
+
+/* Liste des grades */
+.hierarchie-ranks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hierarchie-rank-item {
+    padding: 12px 0;
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.15em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hierarchie-rank-item:last-child {
+    border-bottom: none;
+}
+
+.hierarchie-rank-item::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: #0a3d7a;
+    font-size: 0.9em;
+}
+
+.hierarchie-content-red .hierarchie-rank-item::before {
+    color: #c62828;
+}
+
+.hierarchie-content-gold .hierarchie-rank-item::before {
+    color: #f57c00;
+}
+
+/* Sous-catégories (pour les Officiers) */
+.hierarchie-subcategory-block {
+    margin-bottom: 25px;
+}
+
+.hierarchie-subcategory-block:last-child {
+    margin-bottom: 0;
+}
+
+.hierarchie-subcategory-title {
+    font-size: 1.2em;
+    font-weight: 900;
+    color: #0a3d7a;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hierarchie-content-red .hierarchie-subcategory-title {
+    color: #c62828;
+}
+
+.hierarchie-content-gold .hierarchie-subcategory-title {
+    color: #f57c00;
+}
+
+/* Étoiles pour les généraux */
+.hierarchie-stars {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.hierarchie-stars span {
+    font-size: 1.1em;
+    margin-right: 2px;
+}
+
+/* Boîte d'attention */
+.hierarchie-attention-box {
+    background: #fff59d;
+    border: 3px solid #ffc107;
+    border-radius: 10px;
+    padding: 18px;
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hierarchie-attention-icon {
+    font-size: 1.8em;
+    flex-shrink: 0;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.hierarchie-attention-text {
+    flex: 1;
+    font-size: 1.05em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.5;
+}
+
+/* Responsive pour la fiche Hiérarchie */
+@media (max-width: 1000px) {
+    .hierarchie-categories-container {
+        grid-template-columns: minmax(400px, 1fr);
+    }
+    
+    .hierarchie-category-content {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 800px) {
+    .hierarchie-header {
+        font-size: 1.6em;
+    }
+    
+    .hierarchie-warning-banner {
+        font-size: 1.1em;
+        padding: 18px 25px;
+    }
+    
+    .hierarchie-category-title {
+        font-size: 1.2em;
+    }
+    
+    .hierarchie-rank-item {
+        font-size: 1.05em;
+    }
+}
+
+@media (max-width: 500px) {
+    .hierarchie-sheet {
+        padding: 15px;
+    }
+    
+    .hierarchie-header {
+        font-size: 1.4em;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hierarchie-warning-banner {
+        font-size: 1em;
+        padding: 15px 20px;
+    }
+    
+    .hierarchie-category-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 18px;
+    }
+    
+    .hierarchie-category-icon {
+        font-size: 2em;
+    }
+    
+    .hierarchie-category-content {
+        padding: 20px;
+    }
+    
+    .hierarchie-rank-item {
+        font-size: 1em;
+        padding-left: 25px;
+    }
+    
+    .hierarchie-attention-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+}
+
+/* ============================================
+   STYLES POUR LA FICHE LES 3 TYPES DE MISSIONS
+   ============================================ */
+
+.missions-sheet {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: #000000;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* En-tête avec titre et sous-titre */
+.missions-header {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.missions-title {
+    font-size: 2em;
+    font-weight: 900;
+    color: #000000;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+}
+
+.missions-subtitle {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #0a3d7a;
+    font-style: italic;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Container des trois missions */
+.missions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+}
+
+/* Carte de mission */
+.mission-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+/* En-têtes de mission */
+.mission-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 900;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 12px 12px 0 0;
+}
+
+.mission-header-light-blue {
+    background: linear-gradient(135deg, #90caf9 0%, #64b5f6 100%);
+    color: #0a3d7a;
+}
+
+.mission-header-light-red {
+    background: linear-gradient(135deg, #ef9a9a 0%, #e57373 100%);
+    color: #c62828;
+}
+
+.mission-header-light-green {
+    background: linear-gradient(135deg, #a5d6a7 0%, #81c784 100%);
+    color: #2e7d32;
+}
+
+.mission-icon {
+    font-size: 2.5em;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    flex-shrink: 0;
+}
+
+.mission-type {
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Contenu de mission */
+.mission-content {
+    padding: 25px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mission-content-light-blue {
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+}
+
+.mission-content-light-red {
+    background: linear-gradient(135deg, #ffebee 0%, #ffffff 100%);
+}
+
+.mission-content-light-green {
+    background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+}
+
+/* Concept (Prévention/Répression) */
+.mission-concept {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.mission-content-light-blue .mission-concept {
+    border-left-color: #1976d2;
+}
+
+.mission-content-light-red .mission-concept {
+    border-left-color: #d32f2f;
+}
+
+.mission-content-light-green .mission-concept {
+    border-left-color: #388e3c;
+}
+
+.mission-concept-label {
+    color: #000000;
+}
+
+.mission-concept-bold {
+    font-size: 1.1em;
+    color: #0a3d7a;
+    text-transform: uppercase;
+}
+
+.mission-content-light-red .mission-concept-bold {
+    color: #c62828;
+}
+
+.mission-content-light-green .mission-concept-bold {
+    color: #2e7d32;
+}
+
+.mission-concept-text {
+    color: #000000;
+}
+
+/* Icône principale */
+.mission-main-icon {
+    font-size: 3em;
+    text-align: center;
+    margin: 15px 0;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Label des exemples */
+.mission-examples-label {
+    font-size: 1.15em;
+    font-weight: 900;
+    color: #000000;
+    margin-bottom: 12px;
+    margin-top: 10px;
+}
+
+/* Liste des exemples */
+.mission-examples-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+
+.mission-example-item {
+    padding: 10px 0;
+    padding-left: 25px;
+    position: relative;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mission-example-item:last-child {
+    border-bottom: none;
+}
+
+.mission-example-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-size: 1.5em;
+    line-height: 1;
+    color: #0a3d7a;
+    font-weight: 900;
+}
+
+.mission-content-light-red .mission-example-item::before {
+    color: #c62828;
+}
+
+.mission-content-light-green .mission-example-item::before {
+    color: #2e7d32;
+}
+
+/* Icônes secondaires */
+.mission-secondary-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.mission-secondary-icon {
+    font-size: 2em;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Responsive pour la fiche Missions */
+@media (max-width: 1000px) {
+    .missions-container {
+        grid-template-columns: minmax(400px, 1fr);
+    }
+    
+    .mission-content {
+        min-height: auto;
+    }
+}
+
+/* Responsive paysage pour Missions */
+@media (orientation: landscape) and (max-height: 800px) {
+    .missions-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 20px;
+    }
+    
+    .mission-content {
+        min-height: 250px;
+        padding: 20px;
+    }
+    
+    .mission-header {
+        padding: 15px;
+    }
+    
+    .mission-icon {
+        font-size: 2em;
+    }
+    
+    .mission-type {
+        font-size: 1.1em;
+    }
+    
+    .mission-concept {
+        font-size: 1.05em;
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .mission-main-icon {
+        font-size: 2.5em;
+        margin: 10px 0;
+    }
+    
+    .mission-examples-label {
+        font-size: 1em;
+        margin-bottom: 10px;
+        margin-top: 8px;
+    }
+    
+    .mission-example-item {
+        font-size: 0.95em;
+        padding: 8px 0;
+        padding-left: 20px;
+    }
+    
+    .mission-secondary-icons {
+        gap: 12px;
+        margin-top: 15px;
+        padding-top: 12px;
+    }
+    
+    .mission-secondary-icon {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 800px) {
+    .missions-title {
+        font-size: 1.6em;
+    }
+    
+    .missions-subtitle {
+        font-size: 1.1em;
+    }
+    
+    .mission-type {
+        font-size: 1.1em;
+    }
+    
+    .mission-concept {
+        font-size: 1.1em;
+    }
+    
+    .mission-example-item {
+        font-size: 1.05em;
+    }
+}
+
+@media (max-width: 500px) {
+    .missions-sheet {
+        padding: 15px;
+    }
+    
+    .missions-title {
+        font-size: 1.4em;
+    }
+    
+    .missions-subtitle {
+        font-size: 1em;
+    }
+    
+    .mission-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 18px;
+    }
+    
+    .mission-icon {
+        font-size: 2em;
+    }
+    
+    .mission-content {
+        padding: 20px;
+    }
+    
+    .mission-concept {
+        font-size: 1em;
+        padding: 12px;
+    }
+    
+    .mission-main-icon {
+        font-size: 2.5em;
+    }
+    
+    .mission-example-item {
+        font-size: 1em;
+        padding-left: 20px;
+    }
+    
+    .mission-secondary-icons {
+        gap: 10px;
+    }
+    
+    .mission-secondary-icon {
+        font-size: 1.5em;
+    }
+}
+
+/* ============================================
+   STYLES POUR LA FICHE GÉOGRAPHIE & COMPÉTENCE
+   ============================================ */
+
+.geographie-sheet {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: #000000;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* En-tête avec titre */
+.geographie-header {
+    font-size: 2em;
+    font-weight: 900;
+    color: #000000;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.geographie-title-icon {
+    font-size: 0.9em;
+}
+
+/* Section principale */
+.geographie-main-section {
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.geographie-section-title {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #0a3d7a;
+    margin-bottom: 25px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Cartes de zone */
+.geographie-zone-card {
+    margin-bottom: 25px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.geographie-zone-card:last-child {
+    margin-bottom: 0;
+}
+
+.geographie-zone-header {
+    background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%);
+    padding: 18px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #ffffff;
+    font-weight: 900;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.geographie-zone-icon {
+    font-size: 2em;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    flex-shrink: 0;
+}
+
+.geographie-zone-name {
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.geographie-zone-content {
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+    padding: 25px;
+}
+
+/* Liste des items */
+.geographie-items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.geographie-item {
+    padding: 12px 0;
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.15em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.geographie-item:last-child {
+    border-bottom: none;
+}
+
+.geographie-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-size: 1.5em;
+    line-height: 1;
+    color: #1976d2;
+    font-weight: 900;
+}
+
+/* Illustrations */
+.geographie-illustrations {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.geographie-illustration-icon {
+    font-size: 2.5em;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Responsive pour la fiche Géographie */
+@media (max-width: 800px) {
+    .geographie-header {
+        font-size: 1.6em;
+    }
+    
+    .geographie-section-title {
+        font-size: 1.3em;
+    }
+    
+    .geographie-zone-name {
+        font-size: 1.1em;
+    }
+    
+    .geographie-item {
+        font-size: 1.05em;
+    }
+}
+
+@media (max-width: 500px) {
+    .geographie-sheet {
+        padding: 15px;
+    }
+    
+    .geographie-header {
+        font-size: 1.4em;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .geographie-main-section {
+        padding: 20px;
+    }
+    
+    .geographie-zone-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .geographie-zone-content {
+        padding: 20px;
+    }
+    
+    .geographie-item {
+        font-size: 1em;
+        padding-left: 25px;
+    }
+    
+    .geographie-illustration-icon {
+        font-size: 2em;
+    }
+}
+
+/* ============================================
+   STYLES POUR LA FICHE VALEURS ET DEVOIRS
+   ============================================ */
+
+.valeurs-sheet {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: #000000;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* En-tête avec titre */
+.valeurs-header {
+    font-size: 2em;
+    font-weight: 900;
+    color: #000000;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.valeurs-title-icon {
+    font-size: 0.9em;
+}
+
+/* Section principale */
+.valeurs-main-section {
+    background: linear-gradient(135deg, #ffebee 0%, #ffffff 100%);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.valeurs-section-title {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #c62828;
+    margin-bottom: 25px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Container des valeurs */
+.valeurs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cartes de valeur */
+.valeurs-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #c62828;
+}
+
+.valeurs-card-header {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: 900;
+    color: #000000;
+}
+
+.valeurs-number {
+    color: #c62828;
+    margin-right: 5px;
+}
+
+.valeurs-name {
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.valeurs-text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.valeurs-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.valeurs-icon {
+    font-size: 2em;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Responsive pour la fiche Valeurs */
+@media (max-width: 800px) {
+    .valeurs-header {
+        font-size: 1.6em;
+    }
+    
+    .valeurs-section-title {
+        font-size: 1.3em;
+    }
+    
+    .valeurs-card-header {
+        font-size: 1.1em;
+    }
+    
+    .valeurs-text {
+        font-size: 1.05em;
+    }
+}
+
+@media (max-width: 500px) {
+    .valeurs-sheet {
+        padding: 15px;
+    }
+    
+    .valeurs-header {
+        font-size: 1.4em;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .valeurs-main-section {
+        padding: 20px;
+    }
+    
+    .valeurs-card {
+        padding: 20px;
+    }
+    
+    .valeurs-card-header {
+        font-size: 1em;
+    }
+    
+    .valeurs-text {
+        font-size: 1em;
+    }
+    
+    .valeurs-icon {
+        font-size: 1.5em;
+    }
+}
+
+/* ============================================
+   STYLES POUR LA FICHE ORGANISATION GENDARMERIE
+   ============================================ */
+
+.organisation-sheet {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: #000000;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* En-tête avec titre */
+.organisation-header {
+    font-size: 2em;
+    font-weight: 900;
+    color: #000000;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.organisation-title-icon {
+    font-size: 0.9em;
+}
+
+/* Introduction */
+.organisation-intro {
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+    border-left: 5px solid #d32f2f;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.organisation-intro-icon {
+    font-size: 1.5em;
+    flex-shrink: 0;
+}
+
+.organisation-intro-text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.6;
+}
+
+/* Container des subdivisions */
+.organisation-subdivisions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Cartes de subdivision */
+.organisation-sub-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+/* En-têtes de subdivision */
+.organisation-sub-header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+}
+
+.organisation-header-blue {
+    background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%);
+}
+
+.organisation-header-yellow {
+    background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
+}
+
+.organisation-header-black {
+    background: linear-gradient(135deg, #212121 0%, #424242 100%);
+}
+
+.organisation-header-red {
+    background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%);
+}
+
+.organisation-header-green {
+    background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
+}
+
+.organisation-sub-number {
+    font-size: 1.5em;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.organisation-sub-name-container {
+    flex: 1;
+}
+
+.organisation-sub-nickname {
+    font-size: 0.85em;
+    opacity: 0.95;
+    margin-bottom: 3px;
+    font-weight: 600;
+}
+
+.organisation-sub-name {
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+}
+
+.organisation-sub-icon {
+    font-size: 2em;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    flex-shrink: 0;
+}
+
+/* Contenu de subdivision */
+.organisation-sub-content {
+    padding: 20px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.organisation-content-blue {
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+}
+
+.organisation-content-yellow {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffffff 100%);
+}
+
+.organisation-content-black {
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+}
+
+.organisation-content-red {
+    background: linear-gradient(135deg, #ffebee 0%, #ffffff 100%);
+}
+
+.organisation-content-green {
+    background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+}
+
+/* Items de description */
+.organisation-desc-item {
+    font-size: 1em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.organisation-desc-item:last-child {
+    border-bottom: none;
+}
+
+/* Items de mission */
+.organisation-mission-item {
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.5;
+    padding: 8px 0;
+    padding-left: 15px;
+    position: relative;
+}
+
+.organisation-mission-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #0a3d7a;
+    font-weight: 900;
+}
+
+.organisation-content-yellow .organisation-mission-item::before {
+    color: #f57c00;
+}
+
+.organisation-content-black .organisation-mission-item::before {
+    color: #212121;
+}
+
+.organisation-content-red .organisation-mission-item::before {
+    color: #c62828;
+}
+
+.organisation-content-green .organisation-mission-item::before {
+    color: #388e3c;
+}
+
+/* Blocs de structure */
+.organisation-structure-block,
+.organisation-unites-block,
+.organisation-trilogie-block,
+.organisation-composition-block {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.organisation-structure-title,
+.organisation-unites-title,
+.organisation-trilogie-title,
+.organisation-composition-title {
+    font-size: 1em;
+    font-weight: 900;
+    color: #0a3d7a;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.organisation-content-yellow .organisation-structure-title,
+.organisation-content-yellow .organisation-unites-title,
+.organisation-content-yellow .organisation-trilogie-title,
+.organisation-content-yellow .organisation-composition-title {
+    color: #f57c00;
+}
+
+.organisation-content-black .organisation-structure-title,
+.organisation-content-black .organisation-unites-title,
+.organisation-content-black .organisation-trilogie-title,
+.organisation-content-black .organisation-composition-title {
+    color: #212121;
+}
+
+.organisation-content-red .organisation-structure-title,
+.organisation-content-red .organisation-unites-title,
+.organisation-content-red .organisation-trilogie-title,
+.organisation-content-red .organisation-composition-title {
+    color: #c62828;
+}
+
+.organisation-content-green .organisation-structure-title,
+.organisation-content-green .organisation-unites-title,
+.organisation-content-green .organisation-trilogie-title,
+.organisation-content-green .organisation-composition-title {
+    color: #388e3c;
+}
+
+.organisation-level-item {
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #000000;
+    padding: 5px 0;
+    padding-left: 10px;
+}
+
+/* Liste des unités */
+.organisation-unites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.organisation-unite-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #000000;
+}
+
+.organisation-unite-icon {
+    font-size: 1.3em;
+    flex-shrink: 0;
+}
+
+.organisation-unite-name {
+    flex: 1;
+}
+
+/* Items de trilogie et composition */
+.organisation-trilogie-item,
+.organisation-composition-item {
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #000000;
+    padding: 5px 0;
+    padding-left: 15px;
+    position: relative;
+}
+
+.organisation-trilogie-item::before,
+.organisation-composition-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #0a3d7a;
+    font-weight: 900;
+}
+
+.organisation-content-yellow .organisation-trilogie-item::before,
+.organisation-content-yellow .organisation-composition-item::before {
+    color: #f57c00;
+}
+
+.organisation-content-black .organisation-trilogie-item::before,
+.organisation-content-black .organisation-composition-item::before {
+    color: #212121;
+}
+
+.organisation-content-red .organisation-trilogie-item::before,
+.organisation-content-red .organisation-composition-item::before {
+    color: #c62828;
+}
+
+.organisation-content-green .organisation-trilogie-item::before,
+.organisation-content-green .organisation-composition-item::before {
+    color: #388e3c;
+}
+
+/* Branches spécialisées */
+.organisation-branches-block {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.organisation-branch-item {
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #000000;
+    padding: 5px 0;
+    padding-left: 15px;
+    position: relative;
+}
+
+.organisation-branch-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #388e3c;
+    font-weight: 900;
+}
+
+/* Détails */
+.organisation-detail-item {
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.5;
+    padding: 8px 0;
+    font-style: italic;
+}
+
+/* Boîte de conseil */
+.organisation-conseil-box {
+    background: linear-gradient(135deg, #fff59d 0%, #ffffff 100%);
+    border: 3px solid #ffc107;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.organisation-conseil-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.organisation-conseil-icon {
+    font-size: 1.8em;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.organisation-conseil-title {
+    font-size: 1.3em;
+    font-weight: 900;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.organisation-conseil-text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.6;
+}
+
+/* Responsive pour la fiche Organisation */
+@media (max-width: 1400px) {
+    .organisation-subdivisions-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+
+/* Responsive paysage pour Organisation */
+@media (orientation: landscape) and (max-height: 800px) {
+    .organisation-subdivisions-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 15px;
+    }
+    
+    .organisation-sub-content {
+        min-height: 250px;
+        padding: 15px;
+    }
+    
+    .organisation-sub-header {
+        padding: 12px;
+    }
+    
+    .organisation-sub-name {
+        font-size: 0.85em;
+    }
+    
+    .organisation-sub-nickname {
+        font-size: 0.75em;
+    }
+    
+    .organisation-sub-icon {
+        font-size: 1.5em;
+    }
+    
+    .organisation-desc-item,
+    .organisation-mission-item,
+    .organisation-detail-item {
+        font-size: 0.85em;
+        padding: 6px 0;
+    }
+    
+    .organisation-structure-title,
+    .organisation-unites-title,
+    .organisation-trilogie-title,
+    .organisation-composition-title {
+        font-size: 0.9em;
+    }
+    
+    .organisation-level-item,
+    .organisation-unite-name,
+    .organisation-trilogie-item,
+    .organisation-composition-item,
+    .organisation-branch-item {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 1000px) {
+    .organisation-subdivisions-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    
+    .organisation-sub-content {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .organisation-subdivisions-container {
+        grid-template-columns: minmax(400px, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .organisation-header {
+        font-size: 1.6em;
+    }
+    
+    .organisation-intro-text {
+        font-size: 1em;
+    }
+    
+    .organisation-sub-name {
+        font-size: 0.9em;
+    }
+    
+    .organisation-sub-nickname {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 900px) {
+    .organisation-subdivisions-container {
+        grid-template-columns: minmax(400px, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .organisation-subdivisions-container {
+        grid-template-columns: minmax(300px, 1fr);
+    }
+    
+    .organisation-sheet {
+        padding: 15px;
+    }
+    
+    .organisation-header {
+        font-size: 1.4em;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .organisation-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .organisation-sub-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 12px;
+    }
+    
+    .organisation-sub-content {
+        padding: 15px;
+    }
+    
+    .organisation-conseil-box {
+        padding: 20px;
+    }
+    
+    .organisation-conseil-title {
+        font-size: 1.1em;
+    }
+    
+    .organisation-conseil-text {
+        font-size: 1em;
+    }
+}
+

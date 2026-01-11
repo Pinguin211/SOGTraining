@@ -44,3 +44,276 @@
     padding-top: 20px;
 }
 
+/* ============================================
+   STYLES POUR LA PAGE D'ACCUEIL
+   ============================================ */
+
+/* Container principal avec grid */
+.home-main-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+/* Sections communes */
+.home-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.home-section h2 {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: var(--primary);
+    margin: 0 0 20px 0;
+    border: none;
+    padding: 0;
+}
+
+/* Section Question Aléatoire */
+.home-random-question {
+    display: flex;
+    flex-direction: column;
+}
+
+.random-question-info {
+    font-size: 0.9em;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.random-question-info.unanswered {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.random-question-info.all-answered {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.random-question-container {
+    flex: 1;
+}
+
+.random-question-container .question-card {
+    margin: 0;
+}
+
+/* Section Formulaire de Test */
+.home-test-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.home-test-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.home-test-form .form-label {
+    font-size: 0.95em;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.home-test-form .form-input,
+.home-test-form .form-select {
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.home-test-form .form-input:focus,
+.home-test-form .form-select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.home-test-form .form-group-button {
+    margin-top: 10px;
+}
+
+.home-test-form .btn-start-test {
+    width: 100%;
+    padding: 12px 24px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.home-test-form .btn-start-test:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+}
+
+.home-test-form .btn-start-test:active {
+    transform: translateY(0);
+}
+
+/* Section Fiches de Révision */
+.home-revision-sheets-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.home-revision-sheet-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.home-revision-sheet-card:hover {
+    border-color: var(--primary);
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.home-revision-sheet-icon {
+    font-size: 2.5em;
+    flex-shrink: 0;
+}
+
+.home-revision-sheet-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .home-main-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    
+    .home-revision-sheets {
+        grid-column: 1 / -1;
+    }
+    
+    .home-revision-sheets-container {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 900px) {
+    .home-main-container {
+        grid-template-columns: minmax(400px, 1fr);
+    }
+}
+
+/* Responsive paysage */
+@media (orientation: landscape) and (max-height: 800px) {
+    .home-main-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 20px;
+    }
+    
+    .home-section {
+        padding: 15px;
+    }
+    
+    .home-section h2 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+    
+    .random-question-info {
+        font-size: 0.85em;
+        padding: 6px 10px;
+        margin-bottom: 10px;
+    }
+    
+    .home-test-form {
+        gap: 10px;
+    }
+    
+    .home-test-form .form-input,
+    .home-test-form .form-select {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+    
+    .home-test-form .btn-start-test {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    
+    .home-revision-sheet-card {
+        padding: 12px;
+    }
+    
+    .home-revision-sheet-icon {
+        font-size: 2em;
+    }
+    
+    .home-revision-sheet-title {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 800px) {
+    .home-main-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .home-revision-sheets-container {
+        flex-direction: column;
+    }
+    
+    .home-section {
+        padding: 20px;
+    }
+    
+    .home-section h2 {
+        font-size: 1.3em;
+    }
+}
+
+/* Responsive paysage pour petits écrans */
+@media (orientation: landscape) and (max-height: 600px) and (max-width: 1000px) {
+    .home-main-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 15px;
+    }
+    
+    .home-section {
+        padding: 12px;
+    }
+    
+    .home-section h2 {
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+}
+

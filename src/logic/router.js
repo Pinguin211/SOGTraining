@@ -2,6 +2,8 @@ import { initHomePage } from '../pages/HomePage.js';
 import { initAllQuestionsPage } from '../pages/AllQuestionsPage.js';
 import { initTestConfigPage } from '../pages/TestConfigPage.js';
 import { initTestExecutionPage } from '../pages/TestExecutionPage.js';
+import { initRevisionPage } from '../pages/RevisionPage.js';
+import { initRevisionSheetPage } from '../pages/revision/RevisionSheetPage.js';
 import { updateNavbarActive } from '../components/index.js';
 
 /**
@@ -14,7 +16,8 @@ class Router {
             'home': initHomePage,
             'all-questions': initAllQuestionsPage,
             'test-config': initTestConfigPage,
-            'test': initTestExecutionPage
+            'test': initTestExecutionPage,
+            'revision': initRevisionPage
         };
     }
 
@@ -23,6 +26,16 @@ class Router {
      * @param {string} pageId - ID de la page
      */
     navigate(pageId) {
+        // Gérer les pages de fiches de révision (format: revision-sheet-{id})
+        if (pageId.startsWith('revision-sheet-')) {
+            const sheetId = pageId.replace('revision-sheet-', '');
+            this.currentPage = pageId;
+            initRevisionSheetPage(sheetId);
+            updateNavbarActive('revision');
+            window.history.pushState({ page: pageId }, '', `#${pageId}`);
+            return;
+        }
+
         if (this.routes[pageId]) {
             this.currentPage = pageId;
             this.routes[pageId]();
@@ -70,6 +83,13 @@ class Router {
      */
     getPageFromHash() {
         const hash = window.location.hash.slice(1);
+        if (!hash) return null;
+        
+        // Vérifier si c'est une page de fiche de révision
+        if (hash.startsWith('revision-sheet-')) {
+            return hash;
+        }
+        
         return hash && this.routes[hash] ? hash : null;
     }
 }
