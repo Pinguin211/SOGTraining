@@ -16,13 +16,18 @@
 .revision-sheet-container {
     max-width: 1100px;
     margin: 0 auto;
+    padding-top: 80px; /* Espace pour le bouton de retour fixe */
     font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif; /* Touche plus scolaire */
     color: var(--school-text);
     line-height: 1.6;
 }
 
-/* Bouton retour plus visible */
+/* Bouton retour fixe en haut de la page */
 .btn-back-revision {
+    position: fixed;
+    top: 100px; /* Sous la navbar */
+    left: 20px;
+    z-index: 999; /* Juste sous la navbar (z-index 1000) */
     background-color: var(--school-accent);
     color: white;
     padding: 12px 28px;
@@ -32,7 +37,6 @@
     font-weight: 800;
     cursor: pointer;
     transition: all 0.2s ease;
-    margin-bottom: 30px;
     box-shadow: 0 4px 0 #b71c1c;
     display: inline-flex;
     align-items: center;
@@ -382,6 +386,17 @@
 
 /* Responsive */
 @media (max-width: 800px) {
+    .revision-sheet-container {
+        padding-top: 80px; /* Espace pour le bouton de retour fixe */
+    }
+    
+    .btn-back-revision {
+        top: 90px; /* Ajuster pour mobile */
+        left: 10px;
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
+    
     .revision-sheet-header {
         flex-direction: column;
         text-align: center;
@@ -425,6 +440,8 @@
     font-family: 'Segoe UI', 'Arial', sans-serif;
     color: #000000;
     background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    width: 100%;
+    box-sizing: border-box;
     padding: 20px;
     border-radius: 12px;
 }
@@ -704,11 +721,11 @@
 
 @media (max-width: 900px) {
     .identite-two-columns {
-        grid-template-columns: minmax(400px, 1fr);
+        grid-template-columns: 1fr;
     }
     
     .identite-piliers-container {
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-template-columns: 1fr;
     }
     
     .identite-statut-header {
@@ -735,7 +752,7 @@
 
 @media (max-width: 900px) {
     .identite-piliers-container {
-        grid-template-columns: minmax(400px, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
@@ -745,7 +762,11 @@
     }
     
     .identite-piliers-container {
-        grid-template-columns: minmax(300px, 1fr);
+        grid-template-columns: 1fr;
+    }
+    
+    .identite-two-columns {
+        grid-template-columns: 1fr;
     }
     
     .identite-statut-header {
@@ -822,6 +843,8 @@
     font-family: 'Segoe UI', 'Arial', sans-serif;
     color: #000000;
     background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    width: 100%;
+    box-sizing: border-box;
     padding: 20px;
     border-radius: 12px;
 }
@@ -1050,7 +1073,7 @@
 /* Responsive pour la fiche Hiérarchie */
 @media (max-width: 1000px) {
     .hierarchie-categories-container {
-        grid-template-columns: minmax(400px, 1fr);
+        grid-template-columns: 1fr;
     }
     
     .hierarchie-category-content {
@@ -1080,6 +1103,10 @@
 @media (max-width: 500px) {
     .hierarchie-sheet {
         padding: 15px;
+    }
+    
+    .hierarchie-categories-container {
+        grid-template-columns: 1fr;
     }
     
     .hierarchie-header {
@@ -1127,6 +1154,8 @@
     font-family: 'Segoe UI', 'Arial', sans-serif;
     color: #000000;
     background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    width: 100%;
+    box-sizing: border-box;
     padding: 20px;
     border-radius: 12px;
 }
@@ -1351,7 +1380,7 @@
 /* Responsive pour la fiche Missions */
 @media (max-width: 1000px) {
     .missions-container {
-        grid-template-columns: minmax(400px, 1fr);
+        grid-template-columns: 1fr;
     }
     
     .mission-content {
@@ -1442,6 +1471,10 @@
 @media (max-width: 500px) {
     .missions-sheet {
         padding: 15px;
+    }
+    
+    .missions-container {
+        grid-template-columns: 1fr;
     }
     
     .missions-title {
