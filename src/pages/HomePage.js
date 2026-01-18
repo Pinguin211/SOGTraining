@@ -138,26 +138,6 @@ function createTestFormSection() {
         startTest();
     });
 
-    // Nom du test
-    const nameGroup = document.createElement('div');
-    nameGroup.className = 'form-group';
-    
-    const nameLabel = document.createElement('label');
-    nameLabel.setAttribute('for', 'home-test-name');
-    nameLabel.textContent = 'Nom du test';
-    nameLabel.className = 'form-label';
-    
-    const nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.id = 'home-test-name';
-    nameInput.name = 'test-name';
-    nameInput.className = 'form-input';
-    nameInput.placeholder = 'Ex: Test d\'entraînement 1';
-    nameInput.required = true;
-    
-    nameGroup.appendChild(nameLabel);
-    nameGroup.appendChild(nameInput);
-
     // Type de section
     const typeGroup = document.createElement('div');
     typeGroup.className = 'form-group';
@@ -230,7 +210,6 @@ function createTestFormSection() {
     buttonGroup.appendChild(startButton);
 
     // Assemblage du formulaire
-    form.appendChild(nameGroup);
     form.appendChild(typeGroup);
     form.appendChild(countGroup);
     form.appendChild(buttonGroup);
@@ -239,18 +218,11 @@ function createTestFormSection() {
 
     // Fonction pour démarrer le test
     function startTest() {
-        const testName = nameInput.value.trim();
         const testType = typeSelect.value;
         const testCount = parseInt(countSelect.value, 10);
         
-        if (!testName) {
-            alert('Veuillez entrer un nom pour le test');
-            return;
-        }
-        
         // Stocker la configuration dans sessionStorage
         sessionStorage.setItem('testConfig', JSON.stringify({
-            name: testName,
             type: testType,
             count: testCount
         }));

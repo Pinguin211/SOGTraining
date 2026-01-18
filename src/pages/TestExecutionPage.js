@@ -2,6 +2,7 @@ import { selectQuestionsForTest } from '../logic/test-selector.js';
 import { createTestQuestionCard } from '../components/form/TestQuestionCard.js';
 import { getSavedData, saveAnswer } from '../logic/storage.js';
 import { router } from '../logic/router.js';
+import { questionsArray } from '../data/questions/index.js';
 
 /**
  * Initialise et affiche la page d'exécution du test
@@ -22,10 +23,29 @@ export function initTestExecutionPage() {
     }
 
     const testConfig = JSON.parse(testConfigStr);
-    const { name, type, count } = testConfig;
+    const { type, count, questionIds } = testConfig;
 
     // Sélectionner les questions
-    const selectedQuestions = selectQuestionsForTest(count, type);
+    let selectedQuestions;
+    if (questionIds && Array.isArray(questionIds) && questionIds.length > 0) {
+        // Utiliser les questions spécifiées (pour repasser un test)
+        selectedQuestions = questionIds
+            .map(id => questionsArray.find(q => q.id === id))
+            .filter(q => q !== undefined) // Filtrer les questions non trouvées
+            .sort((a, b) => {
+                // Trier par position pour maintenir l'ordre chronologique
+                const posA = a.logic?.position ?? 999;
+                const posB = b.logic?.position ?? 999;
+                if (posA !== posB) {
+                    return posA - posB;
+                }
+                // Si même position, garder l'ordre des IDs
+                return questionIds.indexOf(a.id) - questionIds.indexOf(b.id);
+            });
+    } else {
+        // Sélectionner les questions normalement
+        selectedQuestions = selectQuestionsForTest(count, type);
+    }
 
     if (selectedQuestions.length === 0) {
         contentArea.innerHTML = `
@@ -62,7 +82,7 @@ export function initTestExecutionPage() {
         testHeader.className = 'test-header';
         
         const testTitle = document.createElement('h1');
-        testTitle.textContent = name;
+        testTitle.textContent = 'Test d\'entraînement';
         testHeader.appendChild(testTitle);
         
         const testInfo = document.createElement('div');
@@ -258,10 +278,9 @@ export function initTestExecutionPage() {
             // Récupérer les données sauvegardées à jour
             const currentSavedData = getSavedData();
             
-            // Construire l'objet testResults selon le nouveau format
-            // Format: {testName: [{question: string, answer: string}]}
-            // Toutes les questions doivent être enregistrées, même si la réponse est vide
-            const testResultsArray = [];
+            // Construire l'objet questions selon le nouveau format
+            // Format: {id_question: reponse}
+            const questions = {};
             
             selectedQuestions.forEach(question => {
                 const questionId = question.id;
@@ -276,33 +295,37 @@ export function initTestExecutionPage() {
                 }
                 
                 // Toujours ajouter la question, même si la réponse est vide
-                testResultsArray.push({
-                    question: question.text,
-                    answer: answer || '' // S'assurer que answer est au moins une chaîne vide
-                });
+                questions[questionId] = answer || ''; // S'assurer que answer est au moins une chaîne vide
             });
             
-            // Construire l'objet final avec le nom du test comme clé
-            const testResults = {};
-            if (testResultsArray.length > 0) {
-                testResults[name] = testResultsArray;
-            }
+            // Créer le nouvel objet de test avec la date
+            const testDate = new Date().toISOString();
+            const newTestResult = {
+                date: testDate,
+                questions: questions
+            };
             
             // Charger les résultats existants
             const existingTestsStr = localStorage.getItem('testResults');
-            let existingTests = {};
+            let existingTests = [];
             
             if (existingTestsStr) {
                 try {
-                    existingTests = JSON.parse(existingTestsStr);
+                    const parsed = JSON.parse(existingTestsStr);
+                    if (Array.isArray(parsed)) {
+                        existingTests = parsed;
+                    } else {
+                        // Format invalide, réinitialiser
+                        existingTests = [];
+                    }
                 } catch (e) {
                     console.error('Erreur lors du chargement des résultats:', e);
-                    existingTests = {};
+                    existingTests = [];
                 }
             }
             
-            // Fusionner avec les nouveaux résultats (remplacer si le test existe déjà)
-            Object.assign(existingTests, testResults);
+            // Ajouter le nouveau test au début du tableau
+            existingTests.unshift(newTestResult);
             
             // Sauvegarder
             localStorage.setItem('testResults', JSON.stringify(existingTests));

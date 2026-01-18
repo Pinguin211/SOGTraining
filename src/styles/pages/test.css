@@ -513,6 +513,24 @@
         width: 100%;
     }
 
+    .btn-restart-test {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-restart-test:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+    .btn-restart-test,
     .btn-export-test,
     .btn-delete-test {
         width: 100%;
