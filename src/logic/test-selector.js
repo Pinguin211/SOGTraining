@@ -1,5 +1,6 @@
 import { questionsArray } from '../data/questions/index.js';
 import { sectionsStructure } from '../data/sections.js';
+import { getSavedData } from './storage.js';
 
 /**
  * Sélectionne les questions pour un test selon les règles définies
@@ -28,7 +29,6 @@ export function selectQuestionsForTest(count, sectionId = null) {
     // 3. Sélectionner les questions selon les règles
     const selected = [];
     const selectedIds = new Set();
-    const pendingFollowUps = new Map(); // Questions qui doivent suivre d'autres questions
     
     // Fonction pour ajouter une question et gérer son chaînage
     function addQuestion(question, checkLimit = true) {
@@ -45,7 +45,8 @@ export function selectQuestionsForTest(count, sectionId = null) {
         selectedIds.add(question.id);
         
         // Règle 2: Chaînage forcé (logic.next)
-        // Vérifier si on peut encore ajouter des questions avant d'ajouter la question suivante
+        // Si une question a un "next", ajouter automatiquement la question suivante
+        // Cela inclut les questions avec followUp: true qui sont liées via next
         if (question.logic?.next && selected.length < count) {
             const nextQuestion = availableQuestions.find(q => q.id === question.logic.next);
             if (nextQuestion && !selectedIds.has(nextQuestion.id)) {
@@ -53,38 +54,45 @@ export function selectQuestionsForTest(count, sectionId = null) {
                 addQuestion(nextQuestion, true);
             }
         }
-        
-        // Règle 3: Gérer les follow-ups en attente
-        // Vérifier si on peut encore ajouter des questions avant d'ajouter les follow-ups
-        if (pendingFollowUps.has(question.id) && selected.length < count) {
-            const followUps = pendingFollowUps.get(question.id);
-            followUps.forEach(followUp => {
-                if (!selectedIds.has(followUp.id) && selected.length < count) {
-                    addQuestion(followUp, true);
-                }
-            });
-            pendingFollowUps.delete(question.id);
-        }
     }
     
-    // 4. Traiter les questions par position
-    // D'abord, identifier les questions avec followUp qui doivent être liées
-    availableQuestions.forEach(question => {
-        if (question.logic?.followUp === true) {
-            // Pour l'instant, on les traite comme des questions normales
-            // mais on pourrait implémenter une logique plus complexe ici
-        }
-    });
+    // 4. Exclure les questions avec followUp: true de la sélection aléatoire
+    // Ces questions ne doivent être ajoutées que via le chaînage (règle 2)
+    const questionsWithoutFollowUp = availableQuestions.filter(
+        question => question.logic?.followUp !== true
+    );
     
-    // 5. Sélectionner les questions de manière aléatoire, toutes positions confondues
-    // Les questions avec position 0 ne sont plus forcées, elles sont sélectionnées aléatoirement
-    // Mélanger toutes les questions disponibles pour une sélection vraiment aléatoire
-    const allQuestionsShuffled = [...availableQuestions].sort(() => Math.random() - 0.5);
+    // 5. Règle : Filtrer les questions déjà répondues
+    // Récupérer les données sauvegardées
+    const savedData = getSavedData();
     
-    // Sélectionner les questions jusqu'à atteindre le nombre demandé
-    for (const question of allQuestionsShuffled) {
+    // Séparer les questions en deux groupes : non répondues et déjà répondues
+    const unansweredQuestions = questionsWithoutFollowUp.filter(
+        question => !savedData[question.id] || savedData[question.id].trim() === ''
+    );
+    const answeredQuestions = questionsWithoutFollowUp.filter(
+        question => savedData[question.id] && savedData[question.id].trim() !== ''
+    );
+    
+    // Mélanger les questions non répondues pour une sélection aléatoire
+    const unansweredShuffled = [...unansweredQuestions].sort(() => Math.random() - 0.5);
+    
+    // Sélectionner d'abord les questions non répondues
+    for (const question of unansweredShuffled) {
         if (selected.length >= count) break;
         addQuestion(question);
+    }
+    
+    // Si on n'a pas assez de questions non répondues, compléter avec des questions déjà répondues
+    if (selected.length < count) {
+        // Mélanger les questions déjà répondues
+        const answeredShuffled = [...answeredQuestions].sort(() => Math.random() - 0.5);
+        
+        // Ajouter les questions déjà répondues jusqu'à atteindre le count
+        for (const question of answeredShuffled) {
+            if (selected.length >= count) break;
+            addQuestion(question);
+        }
     }
     
     // 8. Réorganiser selon l'ordre chronologique final
