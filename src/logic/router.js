@@ -4,6 +4,7 @@ import { initTestConfigPage } from '../pages/TestConfigPage.js';
 import { initTestExecutionPage } from '../pages/TestExecutionPage.js';
 import { initRevisionPage } from '../pages/RevisionPage.js';
 import { initRevisionSheetPage } from '../pages/revision/RevisionSheetPage.js';
+import { initSettingsPage } from '../pages/SettingsPage.js';
 import { updateNavbarActive } from '../components/index.js';
 
 /**
@@ -17,7 +18,8 @@ class Router {
             'all-questions': initAllQuestionsPage,
             'test-config': initTestConfigPage,
             'test': initTestExecutionPage,
-            'revision': initRevisionPage
+            'revision': initRevisionPage,
+            'settings': initSettingsPage
         };
     }
 

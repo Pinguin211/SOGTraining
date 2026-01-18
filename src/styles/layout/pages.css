@@ -317,3 +317,85 @@
     }
 }
 
+/* ============================================
+   STYLES POUR LA PAGE PARAMÈTRES
+   ============================================ */
+
+.settings-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.settings-section h2 {
+    font-size: 1.8em;
+    font-weight: 900;
+    color: var(--primary);
+    margin: 0 0 20px 0;
+    border: none;
+    padding: 0;
+}
+
+.settings-description {
+    font-size: 1em;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+}
+
+.btn-clear-data {
+    background-color: #dc3545;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+.btn-clear-data:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+}
+
+.btn-clear-data:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+/* Responsive pour la page Paramètres */
+@media (max-width: 800px) {
+    .settings-section {
+        padding: 20px;
+        margin-top: 20px;
+    }
+    
+    .settings-section h2 {
+        font-size: 1.5em;
+    }
+    
+    .settings-description {
+        font-size: 0.95em;
+        padding: 12px;
+    }
+    
+    .btn-clear-data {
+        padding: 10px 20px;
+        font-size: 0.95em;
+        width: 100%;
+    }
+}

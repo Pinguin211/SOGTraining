@@ -24,7 +24,8 @@ export function createNavbar(onNavigate) {
         { id: 'home', label: 'Accueil', href: '#home' },
         { id: 'all-questions', label: 'Questions', href: '#all-questions' },
         { id: 'test-config', label: 'Test', href: '#test-config' },
-        { id: 'revision', label: 'Révision', href: '#revision' }
+        { id: 'revision', label: 'Révision', href: '#revision' },
+        { id: 'settings', label: 'Paramètres', href: '#settings' }
     ];
 
     function toggleMenu() {
