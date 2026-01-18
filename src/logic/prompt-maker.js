@@ -1,3 +1,5 @@
+import {PROMPT_GENERAL_RULES} from "../data/prompt-rule.js";
+
 /**
  * Génère un prompt pour l'analyse des réponses
  * @param {string} context - Contexte de l'analyse (ROLE + CONTEXTE & ANGLE D'ATTAQUE)
@@ -13,6 +15,8 @@ export function makePrompt(context, expected, data) {
     const prompt = `${context}
 
 ${expected}
+
+${PROMPT_GENERAL_RULES}
 
 # DONNÉES À ANALYSER (FORMAT JSON)
 
